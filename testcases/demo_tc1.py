@@ -10,8 +10,14 @@ from selenium.webdriver.support.select import Select
 
 class DemoAutoSuggest:
     def demo_auto_suggest(self):
+
+        # Launching browser and opening the travel website
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         driver.get("https://www.yatra.com/")
+        driver.maximize_window()
+
+
+        # Provide going from location
         depart_from = driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_city']")
         depart_from.click()
         time.sleep(2)
@@ -20,6 +26,7 @@ class DemoAutoSuggest:
         depart_from.send_keys(Keys.ENTER)
         time.sleep(2)
 
+        # Provide going to location
         going_to = driver.find_element(By.XPATH, "//input[@id='BE_flight_arrival_city']")
         time.sleep(2)
         going_to.send_keys("New")
@@ -41,6 +48,8 @@ class DemoAutoSuggest:
 
 # Not a recommended way to select a calendar date
 
+
+        # Select the departure date
         origin = driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_date']")
         origin.click()
         time.sleep(4)
@@ -59,3 +68,31 @@ class DemoAutoSuggest:
                 date.click()
                 time.sleep(5)
                 break
+
+
+
+        # Click on flight search button
+        driver.find_element(By.XPATH, "//div[@class='ripple-parent search-height demo-icon icon-go']//input[@id='BE_flight_flsearch_btn']").click()
+        time.sleep(10)
+
+
+        # Select the filter 1 stop
+        driver.find_element(By.XPATH, "//p[normalize-space()='1']").click()
+        time.sleep(10)
+
+
+
+# Launching browser and opening the travel website
+# Provide going from location
+# Provide going to location
+# Select the departure date
+# Click on flight search button
+# Select the filter 1 stop
+# Varify that the filtered results show flights having only 1 stop
+
+
+
+
+
+autoSuggest = DemoAutoSuggest()
+autoSuggest.demo_auto_suggest()
