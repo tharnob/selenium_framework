@@ -1,5 +1,7 @@
 import time
 import pytest
+
+from pages.search_flights_results_page import Second_page
 from pages.yatra_launch_page import LaunchPage
 from selenium import webdriver
 from selenium.webdriver import Keys
@@ -37,8 +39,10 @@ class TestSearchAndVerifyFilter:
         lp.clickSearch()
 
         # Select the filter 1 stop
-        self.driver.find_element(By.XPATH, "//p[normalize-space()='1']").click()
-        time.sleep(10)
+
+        sp = Second_page(self.driver)
+
+        sp.filter_page()
 
 
 
